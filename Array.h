@@ -111,9 +111,8 @@ public:
 
             for (int i = size_; i > index; --i){
                 new(data_ + i) T(std::move(data_[i - 1]));
+                data_[i - 1].~T();
             }
-
-            data_[index].~T();
         }
 
         new(data_ + index) T(value);
